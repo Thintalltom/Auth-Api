@@ -11,9 +11,14 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 # Quick-start development settings - unsuitable for production
@@ -41,7 +46,7 @@ INSTALLED_APPS = [
      'drf_yasg',
      'login_flow', 
      'rest_framework_simplejwt',
-     
+     'rest_framework_simplejwt.token_blacklist'
 ]
 
 MIDDLEWARE = [
@@ -77,12 +82,17 @@ WSGI_APPLICATION = 'Auth_Flow.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if os.getenv("DATABASE_URL"):
+    DATABASES = {
+        'default': dj_database_url.parse(os.getenv("DATABASE_URL"))
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation

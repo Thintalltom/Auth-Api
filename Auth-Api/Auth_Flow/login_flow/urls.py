@@ -3,7 +3,7 @@ from . import views
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
-
+from rest_framework_simplejwt.views import TokenRefreshView
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -20,6 +20,9 @@ urlpatterns = [
     # path('member/', views.members, name='members'),
     path('sign-up/', views.create_user, name='signup'),
     path('login/', views.login_user, name='login'),
+    path('refresh/', TokenRefreshView.as_view()),
+    path('logout/', views.logout_user, name='logout'),
+    path('members/', views.members, name='members'),
 #      path('users/<int:pk>/', views.user_detail, name='user-detail'),
 #     path('products/', views.get_products, name='products'),
 #    path('products/<int:pk>/', views.product_detail, name='product-detail'),
