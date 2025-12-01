@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-3cw^&=%=%ao$!-hqs(c2#acj+nxoj*#8w6wt)pum1u_or^uo$s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['authlogin-csefayf7ergtb0ez.canadacentral-01.azurewebsites.net']
 
 
 # Application definition
