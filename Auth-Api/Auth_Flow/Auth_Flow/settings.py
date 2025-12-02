@@ -112,6 +112,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+# Tell Django what the real login URL is
+LOGIN_URL = '/login/'
+
+# Tell Django where to redirect after login
+LOGIN_REDIRECT_URL = '/swagger/'
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
